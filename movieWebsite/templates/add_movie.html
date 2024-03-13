@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div class="row" style="">
+    <div class="col-md-2"></div>
+
+            <div class="col-md-8 card" style="text-align:center;padding:2%;margin-top:2%">
+      <h3 class="title">Add Your Movie here</h3><br>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="text" name="name" placeholder="Enter your movie name"><br><br>
+    <textarea type="text" name="desc" placeholder="Enter your movie description"></textarea><br><br>
+    <input type="text" name="actor" placeholder="Actors"><br><br>
+  <input type="text" name="link" placeholder="Trailer link"><br><br>
+  <input type="date" name="date" placeholder="Enter your movie date"><br><br>
+  <input type="file" name="img"><br><br>
+
+  <label for="category">Choose a category:</label>
+<select name="category" id="category">
+      {% for cat in links %}
+  <option value="{{cat.id}}">{{cat.genre}}</option>
+  {% endfor %}
+</select>
+<br><br>
+  <input type="submit" class="btn btn-success">
+</form>
+    </div>
+
+     <div class="col-md-2"></div>
+</div>
+
+{% endblock %}

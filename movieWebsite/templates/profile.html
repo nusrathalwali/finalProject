@@ -1,0 +1,64 @@
+<head>
+<style>
+  .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div class="card">
+  <img src="{% static 'img/Profile.png' %}" alt="John" style="width:100%">
+  <br>
+{% if user.is_authenticated %}
+  <h2>{{user.username}}</h2>
+  <p class="title">First Name: {{user.first_name}}</p>
+  <p class="title">Last Name: {{user.last_name}}</p>
+  <p>Email: {{user.email}}</p>
+{% endif %}
+  <div class="col-md">
+  <a href="#"><i class="fa fa-dribbble"></i></a>
+  <a href="#"><i class="fa fa-twitter"></i></a>
+  <a href="#"><i class="fa fa-linkedin"></i></a>
+  <a href="#"><i class="fa fa-facebook"></i></a>
+    </div>
+<!--  <p><a href="credentials/update/{{request.user.id}}"><button>Edit</button></a></p>-->
+    <p><a href="{% url 'credentials:update' request.user.id %}"><button>Edit</button></a></p>
+
+</div>
+
+{% endblock %}

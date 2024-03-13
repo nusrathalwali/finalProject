@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div>
+    <p class="text-center" style="color:#e6f2ff">You have searched for  :<b>"{{query}}"</b></p>
+</div>
+<div class="container">
+    <div class="row mx-auto">
+        {% for result in results %}
+        <div class="my_bottom_margin col-9 col-sm-12  col-md-4 xol-lg-4">
+            <div class="card text-center" style="width:20rem;">
+                <a href=""><img class="card-img-top" src="{{result.image.url}}" alt="{{result.name}}" width="80%" height="20%"> </a>
+                <div class="card-body">
+                    <h4>{{result.title}}</h4>
+                    <small>Released on:{{result.date}}</small>
+                     <a href="{% url 'movieapp:detail' result.id %}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="row mx-auto">
+            <p class="text-center" style="color:#e6f2ff"> 0 results found</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

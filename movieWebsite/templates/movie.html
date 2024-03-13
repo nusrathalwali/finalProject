@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+
+<div class="row">
+        <img  src="{% static 'img/mvb.webp' %}" alt="our products" style="width:100%;height:500px;">
+    <div class="centered" style="text-align:left;font-family:cursive;padding-left:20%;padding-top:5%;font-size:18px;">Choose and Explore your movie with Movie Web</div>
+</div>
+
+
+<div class="container" style="padding-top:5%;">
+    <div class="row">
+        <h2 style="color:#ffcc00;padding-bottom:2%;">Explore what's streaming</h2>
+        {% for movie in user_movie_lists %}
+        <div class="col-md-2">
+            <div class="card" style="width: 12rem;height:30rem;">
+  <img class="card-img-top" src="{{movie.image.url}}" alt="Card image cap"  height="250px;">
+  <div class="card-body" style="background-color:#1c334a;height:10rem;">
+       <h5 class="card-title" style="color:white;">{{movie.title}}</h5>
+       <p class="card-text" style="color:#e6e6e6">{{movie.category}} {{movie.date}}</p>
+       <p class="card-text" style="color:#e6e6e6">{{movie.actors|slice:":50"}}...</p>
+<!--    <a href="">|>{{movie.youtube_link}}</a>-->
+               <a href="{% url 'movieapp:detail' movie.id %}" class="btn btn-primary">Read More</a>
+
+  </div>
+</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="container" style="padding-top:5%">
+    <div class="row">
+        <div class="col-md-2 card" style="background-color:#1c334a;">
+        <h4 style="color:#ffcc00;">Genres</h4>
+        </div>
+        {% for category in links %}
+        <div class="col-md-2 card" style="background-color:#1c334a;">
+            <h4><a style="text-decoration: none;" href="{{category.get_url}}">{{category.genre}}</a></h4>
+        </div>
+
+        {% endfor %}
+    </div>
+
+<!--second card-->
+
+    <div class="row" style="padding-top:3%">
+        {% for movie in movies %}
+        <div class="col-md-4">
+            <div class="card" style="width: 20rem;height:32rem;">
+                  <img class="card-img-top" src="{{movie.image.url}}" alt="Card image cap"  height="250px;">
+                  <div class="card-body" style="background-color:black;height:relative;">
+                      <h5 class="card-title" style="color:white;">{{movie.title}}</h5>
+                      <p class="card-text" style="color:#e6e6e6">{{movie.actors}}</p>
+                       <p class="card-text" style="color:#e6e6e6">{{movie.description|slice:":100"}} . . .</p>
+                      <a href="{% url 'movieapp:detail' movie.id %}" class="btn btn-primary">Read More</a>
+
+                  </div>
+            </div>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+
+<!--    third card    -->
+
+<!--        <div class="row" style="padding-top:3%">-->
+<!--            <h1>User movie list</h1>-->
+<!--        {% for movie in movies %}-->
+<!--        <div class="col-md-4">-->
+<!--            <div class="card" style="width: 25rem;height:30rem;">-->
+<!--                <img class="card-img-top" src="{{movie.image.url}}" alt="Card image cap"  height="250px;">-->
+<!--                <div class="card-body" style="background-color:black;height:40rem;">-->
+<!--                    <h5 class="card-title" style="color:white;">{{movie.title}}</h5>-->
+<!--                      <p class="card-text" style="color:#e6e6e6">{{movie.description}}</p>-->
+<!--                      <a href="{% url 'movieapp:detail' movie.id %}" class="btn btn-primary">Details</a>-->
+<!--                      {% if request.user == movie.user %}-->
+<!--                      <a class="card-text">Edit</a>   <a class="card-text">Delete</a>-->
+<!--                      {% endif %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        {% endfor %}-->
+<!--        </div>-->
+
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+
+{% if not user_movie_list %}
+<div>
+    <div class="text-center">
+        <br>
+        <h4 class="text-center" style="color:#e6e6e6;font-family:cursive;">
+            You have not added any movies
+        </h4>
+
+    </div>
+</div>
+{% else %}
+
+        <div class="row" style="padding-top:3%;margin-left:1%;">
+            <h4 class="text-center" style="color:#f6e6e6;font-family:cursive">Movie Added By You</h4><br>
+        {% for movie in user_movie_list %}
+        <div class="col-md-4">
+            <div class="card" style="width: 25rem;height:30rem;">
+  <img class="card-img-top" src="{{movie.image.url}}" alt="Card image cap"  height="250px;">
+  <div class="card-body" style="background-color:black;height:10rem;">
+    <h5 class="card-title" style="color:white;">{{movie.title}}</h5>
+       <p class="card-text" style="color:#e6e6e6">Actors: {{movie.actors}}</p>
+      <p class="card-text" style="color:#e6e6e6">Genre: {{movie.category.genre}}</p>
+      <a href="{% url 'movieapp:detail' movie.id %}" class="btn btn-primary">Details</a>
+  </div>
+</div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+   {% endif %}
+
+{% endblock %}

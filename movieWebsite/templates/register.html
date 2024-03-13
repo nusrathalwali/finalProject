@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        .login-page {
+  width: 360px;
+  padding: 2% 0 0;
+  margin: auto;
+}
+.login-page .form .login{
+  margin-top: -31px;
+margin-bottom: 26px;
+
+}
+.form {
+background-color:transparent;
+  position: relative;
+  z-index: 1;
+
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+input{
+background-color:transparent;
+padding:6px;
+border-radius:4px;
+}
+
+body{
+background-color: 	#1c334a;
+}
+h1{
+font-family:fantasy;
+text-align:center;
+font-size:35px;
+color:#ffcc00;
+ letter-spacing:.1em;
+}
+    </style>
+
+</head>
+
+<body>
+<div class="login-page">
+    <h1>Movie Web</h1>
+  <div class="form">
+    <div class="login">
+        <h4 class="heading">REGISTER TO MOVIE WEB</h4>
+<form action="" method="post">
+{% csrf_token %}
+    <input type="text" name="username" placeholder="Enter your username" required><br><br>
+    <input type="text" name="first_name" placeholder="Enter your First Name" ><br><br>
+    <input type="text" name="last_name" placeholder="Enter your Last Name" ><br><br>
+    <input type="email" name="email" placeholder="Enter your Email" required><br><br>
+    <input type="password" name="password" placeholder="Enter your Password" required><br><br>
+    <input type="password" name="password1" placeholder="Confirm Password" required><br><br>
+    <input type="submit">
+</form>
+
+        {% for msg in messages %}
+<h2>{{msg}}</h2>
+{% endfor %}
+
+      </div>
+
+
+  </div>
+
+</div>
+</body>
+</html>
